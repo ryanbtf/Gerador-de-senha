@@ -15,6 +15,10 @@ def salvar_senhas(senhas):
     with open(ARQUIVO, "w") as f:
         json.dump(senhas, f, indent=4)
 
+def listar_senhas(senhas):
+    for i in enumerate(senhas):
+        print(i)
+
 
 def gerar_senha(tamanho):
     caracteres = string.ascii_letters + string.digits + string.punctuation
@@ -24,10 +28,14 @@ def menu():
     senhas = carregar_senhas()
 
     while True:
-        tamanho = input("Digite o tamanho da senha (0 para fechar o programa): ")
+        tamanho = input("Digite o tamanho da senha (0 para fechar o programa ou 1 para listar senhas): ")
 
         if tamanho == "0":
             break
+
+        if tamanho == "1":
+            listar_senhas(senhas)
+            continue
 
         if not tamanho.isdigit():
             print("Digite um número válido!")
